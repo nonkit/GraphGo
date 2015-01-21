@@ -5,10 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BVector", "BVector\BVector.vcxproj", "{3254EE5D-E0FB-433E-818D-63BF6C1874F0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BVectorTest", "BVectorTest\BVectorTest.vcxproj", "{A6A01438-9A33-4080-AE68-D6D1D4011E92}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3254EE5D-E0FB-433E-818D-63BF6C1874F0} = {3254EE5D-E0FB-433E-818D-63BF6C1874F0}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Regression", "Regression\Regression.vcxproj", "{9757CB21-B840-49A6-B057-9F322E543DD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +17,10 @@ Global
 		{3254EE5D-E0FB-433E-818D-63BF6C1874F0}.Debug|Win32.Build.0 = Debug|Win32
 		{3254EE5D-E0FB-433E-818D-63BF6C1874F0}.Release|Win32.ActiveCfg = Release|Win32
 		{3254EE5D-E0FB-433E-818D-63BF6C1874F0}.Release|Win32.Build.0 = Release|Win32
-		{A6A01438-9A33-4080-AE68-D6D1D4011E92}.Debug|Win32.ActiveCfg = Debug|Win32
-		{A6A01438-9A33-4080-AE68-D6D1D4011E92}.Debug|Win32.Build.0 = Debug|Win32
-		{A6A01438-9A33-4080-AE68-D6D1D4011E92}.Release|Win32.ActiveCfg = Release|Win32
-		{A6A01438-9A33-4080-AE68-D6D1D4011E92}.Release|Win32.Build.0 = Release|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Win32.Build.0 = Debug|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.ActiveCfg = Release|Win32
+		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
