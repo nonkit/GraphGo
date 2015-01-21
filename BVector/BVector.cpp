@@ -29,16 +29,11 @@ int mask[32] = {
 	0x00000008, 0x00000004, 0x00000002, 0x00000001
 };
 
-CBVector::CBVector()
-{
-	order = 0;
-	return;
-}
-
 CBVector::CBVector(int order)
 {
 	this->order = order;
-	bits = new int[order / 32];
+	size = (order - 1) / 32 + 1;
+	bits = new int[size];
 	clear();
 	return;
 }
@@ -46,29 +41,32 @@ CBVector::CBVector(int order)
 CBVector::CBVector(int order, int value[])
 {
 	this->order = order;
-	bits = new int[(order - 1) / 32 + 1];
+	size = (order - 1) / 32 + 1;
+	bits = new int[size];
+	clear();
 	for (int i = 0; i < order; i++)
 			setValue(i, value[i]);
 	return;
 }
 
-CBVector::~CBVector()
-{
-	delete[] bits;
-	return;
-}
-
+/**
+* Copy operator for binary vectors
+* @param {CBVector &} bv source bianary vector
+* @since 0.1
+*/
 void CBVector::operator=(CBVector &bv)
 {
 	if (this == &bv)
 		return;
 	order = bv.order;
-	delete[] bits;
 	if (bv.bits != 0) {
-		bits = new int[(order - 1) / 32 + 1];
-		for (int i = 0; i < order; i++)
+		size = (order - 1) / 32 + 1;
+		bits = new int[size];
+		clear();
+		for (int i = 0; i < size; i++)
 			bits[i] = bv.bits[i];
 	}
+	return;
 }
 
 /**
@@ -142,7 +140,7 @@ CBVector CBVector::inv()
 	for (int mask2 = 0; mask1 != 0; mask1 <<= 1) {
 		mask2 |= mask1;
 		int i = 0;
-		for (; i < order - 1; i++)
+		for (; i < size; i++)
 			bv.bits[i] = ~bits[i];
 		bv.bits[i] = ~bits[i] & mask2;
 	}
@@ -179,9 +177,10 @@ CBVector CBVector::or(CBVector bv2)
 {
 	if (order != bv2.order)
 		return 0;
-	CBVector bv = bv2;
-	for (int i = 0; i < order; i++)
-		bv.bits[i] |= bits[i];
+	CBVector bv(order);
+	bv = *this;
+	for (int i = 0; i < size; i++)
+		bv.bits[i] |= bv2.bits[i];
 	return bv;
 }
 								
@@ -195,9 +194,10 @@ CBVector CBVector::and(CBVector bv2)
 {
 	if (order != bv2.order)
 		return 0;
-	CBVector bv = bv2;
-	for (int i = 0; i < order; i++)
-		bv.bits[i] &= bits[i];
+	CBVector bv(order);
+	bv = *this;
+	for (int i = 0; i < size; i++)
+		bv.bits[i] &= bv2.bits[i];
 	return bv;
 }
 									
@@ -210,9 +210,10 @@ CBVector CBVector::and(CBVector bv2)
 CBVector CBVector::diff(CBVector bv2) {
 	if (order != bv2.order)
 		return 0;
-	CBVector bv = bv2;
-	for (int i = 0; i < order; i++)
-		bv.bits[i] &= ~bits[i];
+	CBVector bv(order);
+	bv = *this;
+	for (int i = 0; i < size; i++)
+		bv.bits[i] &= ~bv2.bits[i];
     return bv;
 }
 										
@@ -225,9 +226,10 @@ CBVector CBVector::diff(CBVector bv2) {
 CBVector CBVector::xor(CBVector bv2) {
 	if (order != bv2.order)
 		return 0;
-    CBVector bv = bv2;
-	for (int i = 0; order; i++)
-		bv.bits[i] ^= bits[i];
+	CBVector bv(order);
+	bv = *this;
+	for (int i = 0; i < size; i++)
+		bv.bits[i] ^= bv2.bits[i];
     return bv;
 }
 
@@ -258,7 +260,7 @@ CBVector CBVector::mul(int b2)
  * @return {int} dot product with bv2 (or -1 if error)
  * @since 0.1
  */
-CBVector CBVector::dot(CBVector bv2)
+int CBVector::dot(CBVector bv2)
 {
 	if (order != bv2.order)
 		return -1;
@@ -277,8 +279,7 @@ string CBVector::toString()
 {
 	string str("(");
 	for (int i = 0; i < order; i++) {
-		// convert to 1 origin
-		str += getValue(i + 1);
+		str += to_string(getValue(i));
 		if (i < order - 1)
 			str += ",";
 	}

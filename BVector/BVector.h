@@ -1,3 +1,6 @@
+// BVector.h
+// Copyright (c) 2015 Nonki Takahashi.  The MIT License.
+//
 // The following ifdef block is the standard way of creating macros which make exporting 
 // from a DLL simpler. All files within this DLL are compiled with the BVECTOR_EXPORTS
 // symbol defined on the command line. This symbol should not be defined on any project
@@ -16,13 +19,13 @@ using namespace std;
 
 class BVECTOR_API CBVector {
 	int order;
+	int size;
 	int *bits;
 public:
-	CBVector(void);
+	// CBVector(void);
 	// TODO: add your methods here.
 	CBVector(int);
 	CBVector(int, int[]);
-	~CBVector(void);
 	void operator=(CBVector &);
 	void clear(void);
 	void setValue(int, int);
@@ -35,7 +38,7 @@ public:
 	CBVector and(CBVector);
 	CBVector xor(CBVector);
 	CBVector mul(int);
-	CBVector dot(CBVector);
+	int dot(CBVector);
 	string toString(void);
 };
 
