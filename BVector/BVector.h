@@ -33,6 +33,7 @@ public:
 	void clear(void);
 	void setValue(int, int);
 	int getValue(int);
+	int getOrder(void);
 	int abs(void);
 	CBVector inv(void);
 	bool equals(CBVector);

@@ -106,7 +106,7 @@ void CBVector::operator=(CBVector &bv)
 	if (this == &bv)
 		return;
 	order = bv.order;
-	if (*bv.bits != 0) {
+	if (bv.bits != 0) {
 		size = (order - 1) / 32 + 1;
 		if (bits != 0)
 			delete[] bits;
@@ -161,6 +161,16 @@ int CBVector::getValue(int i)
 }
 
 /**
+* Get order of binary vector
+* @return order
+* @since 0.2
+*/
+int CBVector::getOrder(void)
+{
+	return order;
+}
+
+/**
  * Count elements that values are 1 in binary vector
  * @return number of 1 elements
  * @since 0.1
@@ -169,7 +179,7 @@ int CBVector::abs(void)
 {
 	int n = 0;
 	for (int i = 0; i < order; i++)
-		if (getValue(i) == 1)
+		if (getValue(i + 1) == 1)
 			n++;
 	return n;
 }

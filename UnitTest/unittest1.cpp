@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include <iostream>
-#include "../BVector/BVector.h"
+#include "../BMatrix/BMatrix.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -128,6 +128,163 @@ namespace UnitTest
 			int v[] = { 0, 1, 0, 1 };
 			CBVector b(4, v);
 			Assert::AreEqual(1, a.dot(b));
+		}
+
+		TEST_METHOD(BMatrix_A)
+		{
+			string expected("0 0 0 1\n0 0 0 1\n0 0 0 1\n0 0 0 1\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			Assert::AreEqual(expected, A.toString());
+		}
+
+		TEST_METHOD(BMatrix_B)
+		{
+			string expected("0 0 0 1\n0 0 1 0\n0 1 0 0\n1 0 0 0\n");
+			CBMatrix B(4, 4);
+			B.setValue(1, 4, 1);
+			B.setValue(2, 3, 1);
+			B.setValue(3, 2, 1);
+			B.setValue(4, 1, 1);
+			Assert::AreEqual(expected, B.toString());
+		}
+
+		TEST_METHOD(BMatrix_getValue)
+		{
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			Assert::AreEqual(0, A.getValue(4, 3));
+		}
+
+		TEST_METHOD(BMatrix_or)
+		{
+			string expected("0 0 0 1\n0 0 1 1\n0 1 0 1\n1 0 0 1\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			CBMatrix B(4, 4);
+			B.setValue(1, 4, 1);
+			B.setValue(2, 3, 1);
+			B.setValue(3, 2, 1);
+			B.setValue(4, 1, 1);
+			Assert::AreEqual(expected, A.or(B).toString());
+		}
+
+		TEST_METHOD(BMatrix_and)
+		{
+			string expected("0 0 0 1\n0 0 0 0\n0 0 0 0\n0 0 0 0\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			CBMatrix B(4, 4);
+			B.setValue(1, 4, 1);
+			B.setValue(2, 3, 1);
+			B.setValue(3, 2, 1);
+			B.setValue(4, 1, 1);
+			Assert::AreEqual(expected, A.and(B).toString());
+		}
+
+		TEST_METHOD(BMatrix_abs)
+		{
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			Assert::AreEqual(4, A.abs());
+		}
+
+		TEST_METHOD(BMatrix_inv)
+		{
+			string expected("1 1 1 0\n1 1 1 0\n1 1 1 0\n1 1 1 0\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			Assert::AreEqual(expected, A.inv().toString());
+		}
+
+		TEST_METHOD(BMatrix_tran)
+		{
+			string expected("0 0 0 0\n0 0 0 0\n0 0 0 0\n1 1 1 1\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			Assert::AreEqual(expected, A.tran().toString());
+		}
+
+		TEST_METHOD(BMatrix_diff)
+		{
+			string expected("0 0 0 0\n0 0 0 1\n0 0 0 1\n0 0 0 1\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			CBMatrix B(4, 4);
+			B.setValue(1, 4, 1);
+			B.setValue(2, 3, 1);
+			B.setValue(3, 2, 1);
+			B.setValue(4, 1, 1);
+			Assert::AreEqual(expected, A.diff(B).toString());
+		}
+
+		TEST_METHOD(BMatrix_xor)
+		{
+			string expected("0 0 0 0\n0 0 1 1\n0 1 0 1\n1 0 0 1\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			CBMatrix B(4, 4);
+			B.setValue(1, 4, 1);
+			B.setValue(2, 3, 1);
+			B.setValue(3, 2, 1);
+			B.setValue(4, 1, 1);
+			Assert::AreEqual(expected, A.xor(B).toString());
+		}
+
+		TEST_METHOD(BMatrix_mul)
+		{
+			string expected("1 0 0 0\n1 0 0 0\n1 0 0 0\n1 0 0 0\n");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			CBMatrix B(4, 4);
+			B.setValue(1, 4, 1);
+			B.setValue(2, 3, 1);
+			B.setValue(3, 2, 1);
+			B.setValue(4, 1, 1);
+			Assert::AreEqual(expected, A.mul(B).toString());
+		}
+
+		TEST_METHOD(BMatrix_Ac)
+		{
+			string expected("(1,1,1,1)");
+			CBMatrix A(4, 4);
+			A.setValue(1, 4, 1);
+			A.setValue(2, 4, 1);
+			A.setValue(3, 4, 1);
+			A.setValue(4, 4, 1);
+			int v[] = { 0, 0, 1, 1 };
+			CBVector c(4, v);
+			Assert::AreEqual(expected, A.mul(c).toString());
 		}
 
 	};

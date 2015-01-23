@@ -33,12 +33,15 @@ public:
 	int abs(void);
 	CBMatrix inv(void);
 	bool equals(CBMatrix);
+	CBVector row(int);
+	CBVector tran1(void);
 	CBMatrix tran(void);
 	CBMatrix or(CBMatrix);
 	CBMatrix diff(CBMatrix);
 	CBMatrix and(CBMatrix);
 	CBMatrix xor(CBMatrix);
 	CBMatrix mul(CBMatrix);
+	CBVector mul(CBVector);
 	string toString(void);
 };
 

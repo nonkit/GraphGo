@@ -48,9 +48,8 @@ CBMatrix::CBMatrix(int n, int m)
 {
 	this->n = n;
 	this->m = m;
-	size = (n - 1) / 32 + 1;
-	colv = new CBVector[size];
-	CBVector bv(n);
+	colv = new CBVector[n];
+	CBVector bv(n, "0");
 	for (int j = 0; j < m; j++)
 		colv[j] = bv;
 	return;
@@ -158,6 +157,32 @@ bool CBMatrix::equals(CBMatrix bm2)
 		}
 	return true;
 }
+
+/**
+ * Returns transposed binary vector
+ * @return transposed binary vector
+ * @since 0.1
+ */
+CBVector CBMatrix::row(int i)
+{
+	if (i < 1 || n < i)
+		return 0;
+	CBVector bv(m);
+	for (int j = 0; j < m; j++)
+		bv.setValue(j + 1, getValue(i, j + 1));
+	return bv;
+}
+
+/**
+ * Returns transposed binary vector
+ * @return transposed binary vector
+ * @since 0.1
+ */
+CBVector CBMatrix::tran1(void)
+{
+	return row(1);
+}
+
 /**
  * Returns transposed binary matrix
  * @param binary matrix
@@ -166,23 +191,127 @@ bool CBMatrix::equals(CBMatrix bm2)
  */
 CBMatrix CBMatrix::tran(void)
 {
+	CBMatrix bm(m, n);
+	for (int j = 0; j < m; j++)
+		for (int i = 0; i < n; i++)
+			bm.setValue(j + 1, i + 1, getValue(i + 1, j + 1));
+	return bm;
 }
-CBMatrix CBMatrix::or(CBMatrix)
+
+/**
+ * Logical or with binary matrix object bm2
+ * @param bm2 second operand for logical or
+ * @return logical or with bm2 (or 0 if error)
+ * @since 0.1
+ */
+CBMatrix CBMatrix::or(CBMatrix bm2)
 {
+	if (n != bm2.n || m != bm2.m)
+		return *this;	// TODO return 0
+	CBMatrix bm(n, m);
+	for (int j = 0; j < m; j++)
+		bm.colv[j] = colv[j].or(bm2.colv[j]);
+	return bm;
 }
-CBMatrix CBMatrix::diff(CBMatrix)
+
+/**
+* Logical difference with binary matrix object bm2
+* @param bm2 second operand for logical difference
+* @return logical difference with bm2 (or 0 if error)
+* @since 0.1
+*/
+CBMatrix CBMatrix::diff(CBMatrix bm2)
 {
+	if (n != bm2.n || m != bm2.m)
+		return *this;	// TODO return 0;
+	CBMatrix bm(n, m);
+	for (int j = 0; j < m; j++)
+		bm.colv[j] = colv[j].diff(bm2.colv[j]);
+	return bm;
 }
-CBMatrix CBMatrix::and(CBMatrix)
+
+/**
+* Logical and with binary matrix object bm2
+* @param bm2 second operand for logical and
+* @return logical and with bm2 (or 0 if error)
+* @since 0.1
+*/
+CBMatrix CBMatrix::and(CBMatrix bm2)
 {
+	if (n != bm2.n || m != bm2.m)
+		return *this;	// TODO return 0;
+	CBMatrix bm(n, m);
+	for (int j = 0; j < m; j++)
+		bm.colv[j] = colv[j].and(bm2.colv[j]);
+	return bm;
 }
-CBMatrix CBMatrix::xor(CBMatrix)
+
+/**
+* Logical xor with binary matrix object bm2
+* @param bm2 second operand for logical xor
+* @return logical xor with bm2 (or 0 if error)
+* @since 0.1
+*/
+CBMatrix CBMatrix::xor(CBMatrix bm2)
 {
+	if (n != bm2.n || m != bm2.m)
+		return *this;	// TODO return 0;
+	CBMatrix bm(n, m);
+	for (int j = 0; j < m; j++)
+		bm.colv[j] = colv[j].xor(bm2.colv[j]);
+	return bm;
 }
-CBMatrix CBMatrix::mul(CBMatrix)
+
+/**
+ * Product with binary matrix object bm2
+ * @param bm2 second operand for product
+ * @return product with bm2 (or 0 if error)
+ * @since 0.1
+ */
+CBMatrix CBMatrix::mul(CBMatrix bm2)
 {
+	if (m != bm2.n)
+		return *this;	// TODO return 0;
+	CBMatrix bm(n, bm2.m);
+	for (int j = 0; j < bm2.m; j++)
+		for (int i = 0; i < n; i++)
+			bm.setValue(i + 1, j + 1, row(i + 1).dot(bm2.colv[j]));
+	return bm;
 }
+
+/**
+* Product with binary vector object bv2
+* @param bv2 second operand for product
+* @return product with bv2 (or 0 if error)
+* @since 0.1
+*/
+CBVector CBMatrix::mul(CBVector bv2)
+{
+	if (m != bv2.getOrder())
+		return 0;
+	CBVector bv(m);
+	for (int j = 0; j < m; j++)
+		bv.setValue(j + 1, row(j + 1).dot(bv2));
+	return bv;
+}
+
+/**
+* Logical difference with binary matrix object bm2
+* @param bm2 second operand for logical difference
+* @return logical difference with bm2 (or 0 if error)
+* @since 0.1
+*/
 string CBMatrix::toString(void)
 {
+	string str("");
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			str += to_string(getValue(i, j));
+			if (j < m)
+				str += " ";
+		}
+		str = str + "\n";
+	}
+	return str;
 }
 

@@ -93,6 +93,9 @@
     <ClCompile Include="unittest1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BMatrix\BMatrix.vcxproj">
+      <Project>{6530eb53-ad0e-4be8-924e-58a5351c4705}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\BVector\BVector.vcxproj">
       <Project>{3254ee5d-e0fb-433e-818d-63bf6c1874f0}</Project>
     </ProjectReference>
