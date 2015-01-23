@@ -16,16 +16,17 @@
 // This class is exported from the BMatrix.dll
 #include <string>
 using namespace std;
+#include "../BVector/BVector.h"
 
 class BMATRIX_API CBMatrix {
 	int n, m;
 	int size;
-	int **colv;
+	CBVector *colv;
 public:
 	// CBVector(void);
 	// TODO: add your methods here.
 	CBMatrix(int, int);
-	void operator=(CBMatrix &);
+	void operator!=(CBMatrix &);
 	void clear(void);
 	void setValue(int, int, int);
 	int getValue(int, int);

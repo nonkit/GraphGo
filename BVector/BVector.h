@@ -1,5 +1,6 @@
 // BVector.h
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
+// Version 0.2
 //
 // The following ifdef block is the standard way of creating macros which make exporting 
 // from a DLL simpler. All files within this DLL are compiled with the BVECTOR_EXPORTS
@@ -18,14 +19,16 @@
 using namespace std;
 
 class BVECTOR_API CBVector {
-	int order;
-	int size;
-	int *bits;
+	int order = 0;
+	int size = 0;
+	int* bits = 0;
+	string name = "";
 public:
-	// CBVector(void);
+	CBVector(void);
 	// TODO: add your methods here.
-	CBVector(int);
-	CBVector(int, int[]);
+	CBVector(int, string name = "");
+	CBVector(int, int[], string name = "");
+	~CBVector(void);
 	void operator=(CBVector &);
 	void clear(void);
 	void setValue(int, int);
@@ -40,6 +43,7 @@ public:
 	CBVector mul(int);
 	int dot(CBVector);
 	string toString(void);
+	static void releaseMem(void);
 };
 
 extern BVECTOR_API int nBVector;

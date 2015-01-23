@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RegressionTest", "Regressio
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BMatrix", "BMatrix\BMatrix.vcxproj", "{6530EB53-AD0E-4BE8-924E-58A5351C4705}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{F296E1E8-40CF-468B-B795-71BE5A570A64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +29,10 @@ Global
 		{6530EB53-AD0E-4BE8-924E-58A5351C4705}.Debug|Win32.Build.0 = Debug|Win32
 		{6530EB53-AD0E-4BE8-924E-58A5351C4705}.Release|Win32.ActiveCfg = Release|Win32
 		{6530EB53-AD0E-4BE8-924E-58A5351C4705}.Release|Win32.Build.0 = Release|Win32
+		{F296E1E8-40CF-468B-B795-71BE5A570A64}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F296E1E8-40CF-468B-B795-71BE5A570A64}.Debug|Win32.Build.0 = Debug|Win32
+		{F296E1E8-40CF-468B-B795-71BE5A570A64}.Release|Win32.ActiveCfg = Release|Win32
+		{F296E1E8-40CF-468B-B795-71BE5A570A64}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
