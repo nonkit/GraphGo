@@ -1,6 +1,6 @@
 // BVector.h
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.3
+// Version 0.4
 //
 // The following ifdef block is the standard way of creating macros which make exporting 
 // from a DLL simpler. All files within this DLL are compiled with the BVECTOR_EXPORTS
@@ -19,6 +19,8 @@
 #include <bitset>
 using namespace std;
 const int MAXBITS = 32;
+
+class CBMatrix;
 
 class BVECTOR_API CBVector {
 	int order = 0;
@@ -43,6 +45,7 @@ public:
 	CBVector xor(CBVector);
 	CBVector mul(int);
 	int dot(CBVector);
+//	CBMatrix cross(CBVector);
 	string to_string(void);
 };
 

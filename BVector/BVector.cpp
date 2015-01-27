@@ -1,14 +1,15 @@
 // BVector.cpp : Defines the exported functions for the DLL application.
 // Binary Vector Class - CBVector
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.3
+// Version 0.4
 /**
  * @author Nonki Takahashi
- * @version 0.3
+ * @version 0.4
  */
 
 #include "stdafx.h"
 #include "BVector.h"
+#include "../BMatrix/BMatrix.h"
 #include <iostream>
 
 // This is an example of an exported variable
@@ -22,16 +23,6 @@ BVECTOR_API int fnBVector(void)
 
 // This is the constructor of a class that has been exported.
 // see BVector.h for the class definition
-int mask[MAXBITS] = {
-	0x80000000, 0x40000000, 0x20000000, 0x10000000,
-	0x08000000, 0x04000000, 0x02000000, 0x01000000,
-	0x00800000, 0x00400000, 0x00200000, 0x00100000,
-	0x00080000, 0x00040000, 0x00020000, 0x00010000,
-	0x00008000, 0x00004000, 0x00002000, 0x00001000,
-	0x00000800, 0x00000400, 0x00000200, 0x00000100,
-	0x00000080, 0x00000040, 0x00000020, 0x00000010,
-	0x00000008, 0x00000004, 0x00000002, 0x00000001
-};
 
 /**
 * Constructor for CBVector class.
@@ -163,7 +154,8 @@ int CBVector::abs(void)
 CBVector CBVector::inv(void)
 {
 	CBVector bv(order);
-	bv.bits = bits.flip();
+	bv.bits = bits;
+	bv.bits.flip();
 	return bv;
 }
 
@@ -286,6 +278,22 @@ int CBVector::dot(CBVector bv2)
 		b |= (getValue(i + 1) & bv2.getValue(i + 1));
 	return b;
 }
+
+/**
+* Cross product with binary vector object bv2
+* @param bv2 second operand for dot product
+* @return dot product with bv2 (or -1 if error)
+* @since 0.4
+CBMatrix CBVector::cross(CBVector bv2)
+{
+	CBMatrix bm(order, order);
+	if (order != bv2.order)
+		return bm;	// TODO return -1
+	for (int i = 0; i < order; i++)
+		bm.setValue(i + 1, i + 1, (getValue(i + 1) & bv2.getValue(i + 1)));
+	return bm;
+}
+*/
 
 /**
  * Convert binary vector object to string

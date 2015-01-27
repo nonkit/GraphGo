@@ -1,14 +1,15 @@
 // BMatrix.cpp : Defines the exported functions for the DLL application.
 // Binary Matrix Class - CBMatrix
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.2
+// Version 0.3
 //
 /**
  * @author Nonki Takahashi
- * @version 0.2
+ * @version 0.3
  */
 
 #include "stdafx.h"
+#include "../BVector/BVector.h"
 #include "BMatrix.h"
 
 // BVector.cpp : Defines the exported functions for the DLL application.
