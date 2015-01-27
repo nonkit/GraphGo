@@ -18,12 +18,6 @@ namespace UnitTest
 	{
 	public:
 		
-		TEST_CLASS_CLEANUP(ClassCleanup)
-		{
-			CBVector::releaseMem();
-			Logger::WriteMessage("Momory released.");
-		}
-
 		TEST_METHOD(BVector_a)
 		{
 			// TODO: Your test code here
@@ -31,7 +25,7 @@ namespace UnitTest
 			CBVector a(4);
 			a.setValue(3, 1);
 			a.setValue(4, 1);
-			Assert::AreEqual(expected, a.toString());
+			Assert::AreEqual(expected, a.to_string());
 		}
 
 		TEST_METHOD(BVector_b)
@@ -39,7 +33,7 @@ namespace UnitTest
 			string expected("(0,1,0,1)");
 			int v[] = { 0, 1, 0, 1 };
 			CBVector b(4, v);
-			Assert::AreEqual(expected, b.toString());
+			Assert::AreEqual(expected, b.to_string());
 		}
 
 		TEST_METHOD(BVector_getValue)
@@ -58,7 +52,7 @@ namespace UnitTest
 			a.setValue(4, 1);
 			int v[] = { 0, 1, 0, 1 };
 			CBVector b(4, v);
-			Assert::AreEqual(expected, a.or(b).toString());
+			Assert::AreEqual(expected, a.or(b).to_string());
 		}
 
 		TEST_METHOD(BVector_and)
@@ -69,7 +63,7 @@ namespace UnitTest
 			a.setValue(4, 1);
 			int v[] = { 0, 1, 0, 1 };
 			CBVector b(4, v);
-			Assert::AreEqual(expected, a.and(b).toString());
+			Assert::AreEqual(expected, a.and(b).to_string());
 		}
 
 		TEST_METHOD(BVector_abs)
@@ -86,7 +80,7 @@ namespace UnitTest
 			CBVector a(4);
 			a.setValue(3, 1);
 			a.setValue(4, 1);
-			Assert::AreEqual(expected, a.inv().toString());
+			Assert::AreEqual(expected, a.inv().to_string());
 		}
 
 		TEST_METHOD(BVector_diff)
@@ -97,7 +91,7 @@ namespace UnitTest
 			a.setValue(4, 1);
 			int v[] = { 0, 1, 0, 1 };
 			CBVector b(4, v);
-			Assert::AreEqual(expected, a.diff(b).toString());
+			Assert::AreEqual(expected, a.diff(b).to_string());
 		}
 
 		TEST_METHOD(BVector_xor)
@@ -108,7 +102,7 @@ namespace UnitTest
 			a.setValue(4, 1);
 			int v[] = { 0, 1, 0, 1 };
 			CBVector b(4, v);
-			Assert::AreEqual(expected, a.xor(b).toString());
+			Assert::AreEqual(expected, a.xor(b).to_string());
 		}
 
 		TEST_METHOD(BVector_mul)
@@ -117,7 +111,7 @@ namespace UnitTest
 			CBVector a(4);
 			a.setValue(3, 1);
 			a.setValue(4, 1);
-			Assert::AreEqual(expected, a.mul(0).toString());
+			Assert::AreEqual(expected, a.mul(0).to_string());
 		}
 
 		TEST_METHOD(BVector_dot)
@@ -138,7 +132,7 @@ namespace UnitTest
 			A.setValue(2, 4, 1);
 			A.setValue(3, 4, 1);
 			A.setValue(4, 4, 1);
-			Assert::AreEqual(expected, A.toString());
+			Assert::AreEqual(expected, A.to_string());
 		}
 
 		TEST_METHOD(BMatrix_B)
@@ -149,7 +143,7 @@ namespace UnitTest
 			B.setValue(2, 3, 1);
 			B.setValue(3, 2, 1);
 			B.setValue(4, 1, 1);
-			Assert::AreEqual(expected, B.toString());
+			Assert::AreEqual(expected, B.to_string());
 		}
 
 		TEST_METHOD(BMatrix_getValue)
@@ -175,7 +169,7 @@ namespace UnitTest
 			B.setValue(2, 3, 1);
 			B.setValue(3, 2, 1);
 			B.setValue(4, 1, 1);
-			Assert::AreEqual(expected, A.or(B).toString());
+			Assert::AreEqual(expected, A.or(B).to_string());
 		}
 
 		TEST_METHOD(BMatrix_and)
@@ -191,7 +185,7 @@ namespace UnitTest
 			B.setValue(2, 3, 1);
 			B.setValue(3, 2, 1);
 			B.setValue(4, 1, 1);
-			Assert::AreEqual(expected, A.and(B).toString());
+			Assert::AreEqual(expected, A.and(B).to_string());
 		}
 
 		TEST_METHOD(BMatrix_abs)
@@ -212,7 +206,7 @@ namespace UnitTest
 			A.setValue(2, 4, 1);
 			A.setValue(3, 4, 1);
 			A.setValue(4, 4, 1);
-			Assert::AreEqual(expected, A.inv().toString());
+			Assert::AreEqual(expected, A.inv().to_string());
 		}
 
 		TEST_METHOD(BMatrix_tran)
@@ -223,7 +217,7 @@ namespace UnitTest
 			A.setValue(2, 4, 1);
 			A.setValue(3, 4, 1);
 			A.setValue(4, 4, 1);
-			Assert::AreEqual(expected, A.tran().toString());
+			Assert::AreEqual(expected, A.tran().to_string());
 		}
 
 		TEST_METHOD(BMatrix_diff)
@@ -239,7 +233,7 @@ namespace UnitTest
 			B.setValue(2, 3, 1);
 			B.setValue(3, 2, 1);
 			B.setValue(4, 1, 1);
-			Assert::AreEqual(expected, A.diff(B).toString());
+			Assert::AreEqual(expected, A.diff(B).to_string());
 		}
 
 		TEST_METHOD(BMatrix_xor)
@@ -255,7 +249,7 @@ namespace UnitTest
 			B.setValue(2, 3, 1);
 			B.setValue(3, 2, 1);
 			B.setValue(4, 1, 1);
-			Assert::AreEqual(expected, A.xor(B).toString());
+			Assert::AreEqual(expected, A.xor(B).to_string());
 		}
 
 		TEST_METHOD(BMatrix_mul)
@@ -271,7 +265,7 @@ namespace UnitTest
 			B.setValue(2, 3, 1);
 			B.setValue(3, 2, 1);
 			B.setValue(4, 1, 1);
-			Assert::AreEqual(expected, A.mul(B).toString());
+			Assert::AreEqual(expected, A.mul(B).to_string());
 		}
 
 		TEST_METHOD(BMatrix_Ac)
@@ -284,7 +278,7 @@ namespace UnitTest
 			A.setValue(4, 4, 1);
 			int v[] = { 0, 0, 1, 1 };
 			CBVector c(4, v);
-			Assert::AreEqual(expected, A.mul(c).toString());
+			Assert::AreEqual(expected, A.mul(c).to_string());
 		}
 
 	};

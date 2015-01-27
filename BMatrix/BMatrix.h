@@ -1,5 +1,6 @@
 // BMatrix.h
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
+// Version 0.2
 //
 // The following ifdef block is the standard way of creating macros which make exporting 
 // from a DLL simpler. All files within this DLL are compiled with the BVECTOR_EXPORTS
@@ -15,18 +16,18 @@
 
 // This class is exported from the BMatrix.dll
 #include <string>
+#include <vector>
 using namespace std;
 #include "../BVector/BVector.h"
 
 class BMATRIX_API CBMatrix {
 	int n, m;
-	int size;
-	CBVector *colv;
+	vector <CBVector> colv;
 public:
 	// CBVector(void);
 	// TODO: add your methods here.
 	CBMatrix(int, int);
-	void operator!=(CBMatrix &);
+	void operator=(CBMatrix &);
 	void clear(void);
 	void setValue(int, int, int);
 	int getValue(int, int);
@@ -42,7 +43,7 @@ public:
 	CBMatrix xor(CBMatrix);
 	CBMatrix mul(CBMatrix);
 	CBVector mul(CBVector);
-	string toString(void);
+	string to_string(void);
 };
 
 extern BMATRIX_API int nBMatrix;

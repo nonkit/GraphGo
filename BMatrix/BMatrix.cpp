@@ -1,11 +1,11 @@
 // BMatrix.cpp : Defines the exported functions for the DLL application.
 // Binary Matrix Class - CBMatrix
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.1
+// Version 0.2
 //
 /**
  * @author Nonki Takahashi
- * @version 0.1
+ * @version 0.2
  */
 
 #include "stdafx.h"
@@ -27,16 +27,6 @@ BMATRIX_API int fnBMatrix(void)
 
 // This is the constructor of a class that has been exported.
 // see BVector.h for the class definition
-int mask[32] = {
-	0x80000000, 0x40000000, 0x20000000, 0x10000000,
-	0x08000000, 0x04000000, 0x02000000, 0x01000000,
-	0x00800000, 0x00400000, 0x00200000, 0x00100000,
-	0x00080000, 0x00040000, 0x00020000, 0x00010000,
-	0x00008000, 0x00004000, 0x00002000, 0x00001000,
-	0x00000800, 0x00000400, 0x00000200, 0x00000100,
-	0x00000080, 0x00000040, 0x00000020, 0x00000010,
-	0x00000008, 0x00000004, 0x00000002, 0x00000001
-};
 
 /**
  * Constructor for CBMatrix class.
@@ -48,30 +38,27 @@ CBMatrix::CBMatrix(int n, int m)
 {
 	this->n = n;
 	this->m = m;
-	colv = new CBVector[n];
 	CBVector bv(n, "0");
 	for (int j = 0; j < m; j++)
-		colv[j] = bv;
+		colv.push_back(bv);
 	return;
 }
 
 /**
 * Copy operator for binary matrix
 * @param bm source bianary matrix
-* @since 0.1
+* @since 0.2
 */
-void CBMatrix::operator!=(CBMatrix &bm)
+void CBMatrix::operator=(CBMatrix &bm)
 {
 	if (this == &bm)
 		return;
 	n = bm.n;
 	m = bm.m;
-	if (bm.colv != 0) {
-		size = (n - 1) / 32 + 1;
-		delete[] colv;
-		colv = new CBVector[size];
+	if (!bm.colv.empty()) {
+		colv.clear();
 		for (int j = 0; j < m; j++)
-			colv[j] = bm.colv[j];
+			colv.push_back(bm.colv[j]);
 	}
 	return;
 }
@@ -301,12 +288,12 @@ CBVector CBMatrix::mul(CBVector bv2)
 * @return logical difference with bm2 (or 0 if error)
 * @since 0.1
 */
-string CBMatrix::toString(void)
+string CBMatrix::to_string(void)
 {
 	string str("");
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= m; j++) {
-			str += to_string(getValue(i, j));
+			str += std::to_string(getValue(i, j));
 			if (j < m)
 				str += " ";
 		}
