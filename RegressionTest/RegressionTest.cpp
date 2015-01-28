@@ -1,16 +1,16 @@
 // RegressionTest.cpp : Defines the entry point for the console application.
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.3
+// Version 0.5
 //
 /**
  * @author Nonki Takahashi
- * @version 0.3
+ * @version 0.5
  */
 
 #include "stdafx.h"
 #include <iostream>
-#include "../BVector/BVector.h"
-#include "../BMatrix/BMatrix.h"
+#include "../binarymath/bvector.h"
+#include "../binarymath/bmatrix.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -30,8 +30,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "a.xor(b)=" << a.xor(b).to_string() << endl;
 	cout << "a.mul(0)=" << a.mul(0).to_string() << endl;
 	cout << "a.dot(b)=" << to_string(a.dot(b)) << endl;
-// TODO add following line
-//	cout << "a.cross(b)=" << endl << a.cross(b).to_string() << endl;
+	cout << "a.cross(b)=" << endl << a.cross(b).to_string() << endl;
 	cout << endl;
 
 	CBMatrix A(4, 4);

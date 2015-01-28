@@ -1,40 +1,26 @@
-// BMatrix.cpp : Defines the exported functions for the DLL application.
-// Binary Matrix Class - CBMatrix
+// bmatrix.cpp : Defines the exported functions for the DLL application.
+// Binary Matrix Class - CBVector
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.3
-//
+// Version 0.4
 /**
- * @author Nonki Takahashi
- * @version 0.3
- */
+* @author Nonki Takahashi
+* @version 0.4
+*/
 
 #include "stdafx.h"
-#include "../BVector/BVector.h"
-#include "BMatrix.h"
-
-// BVector.cpp : Defines the exported functions for the DLL application.
-
-#include "stdafx.h"
-
-
-// This is an example of an exported variable
-//BMATRIX_API int nBMatrix = 0;
-
-// This is an example of an exported function.
-//BMATRIX_API int fnBMatrix(void)
-//{
-//	return 42;
-//}
+#include "bvector.h"
+#include "bmatrix.h"
+#include <iostream>
 
 // This is the constructor of a class that has been exported.
-// see BVector.h for the class definition
+// see binarymath.h for the class definition
 
 /**
- * Constructor for CBMatrix class.
- * @param n number of rows of the matrix
- * @param m number of columns of the matrix
- * @since 0.1
- */
+* Constructor for CBMatrix class.
+* @param n number of rows of the matrix
+* @param m number of columns of the matrix
+* @since 0.1
+*/
 CBMatrix::CBMatrix(int n, int m)
 {
 	this->n = n;
@@ -147,10 +133,10 @@ bool CBMatrix::equals(CBMatrix bm2)
 }
 
 /**
- * Returns transposed binary vector
- * @return transposed binary vector
- * @since 0.1
- */
+* Returns transposed binary vector
+* @return transposed binary vector
+* @since 0.1
+*/
 CBVector CBMatrix::row(int i)
 {
 	if (i < 1 || n < i)
@@ -162,21 +148,21 @@ CBVector CBMatrix::row(int i)
 }
 
 /**
- * Returns transposed binary vector
- * @return transposed binary vector
- * @since 0.1
- */
+* Returns transposed binary vector
+* @return transposed binary vector
+* @since 0.1
+*/
 CBVector CBMatrix::tran1(void)
 {
 	return row(1);
 }
 
 /**
- * Returns transposed binary matrix
- * @param binary matrix
- * @return transposed binary matrix
- * @since 0.1
- */
+* Returns transposed binary matrix
+* @param binary matrix
+* @return transposed binary matrix
+* @since 0.1
+*/
 CBMatrix CBMatrix::tran(void)
 {
 	CBMatrix bm(m, n);
@@ -187,11 +173,11 @@ CBMatrix CBMatrix::tran(void)
 }
 
 /**
- * Logical or with binary matrix object bm2
- * @param bm2 second operand for logical or
- * @return logical or with bm2 (or 0 if error)
- * @since 0.1
- */
+* Logical or with binary matrix object bm2
+* @param bm2 second operand for logical or
+* @return logical or with bm2 (or 0 if error)
+* @since 0.1
+*/
 CBMatrix CBMatrix::or(CBMatrix bm2)
 {
 	if (n != bm2.n || m != bm2.m)
@@ -251,11 +237,11 @@ CBMatrix CBMatrix::xor(CBMatrix bm2)
 }
 
 /**
- * Product with binary matrix object bm2
- * @param bm2 second operand for product
- * @return product with bm2 (or 0 if error)
- * @since 0.1
- */
+* Product with binary matrix object bm2
+* @param bm2 second operand for product
+* @return product with bm2 (or 0 if error)
+* @since 0.1
+*/
 CBMatrix CBMatrix::mul(CBMatrix bm2)
 {
 	if (m != bm2.n)
@@ -302,4 +288,3 @@ string CBMatrix::to_string(void)
 	}
 	return str;
 }
-

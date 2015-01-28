@@ -93,11 +93,8 @@
     <ClCompile Include="unittest1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BMatrix\BMatrix.vcxproj">
-      <Project>{6530eb53-ad0e-4be8-924e-58a5351c4705}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\BVector\BVector.vcxproj">
-      <Project>{3254ee5d-e0fb-433e-818d-63bf6c1874f0}</Project>
+    <ProjectReference Include="..\BinaryMath\BinaryMath.vcxproj">
+      <Project>{4d729a24-7eb6-453d-aba6-8d0c4fc1ada2}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

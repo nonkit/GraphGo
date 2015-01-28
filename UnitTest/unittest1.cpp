@@ -2,14 +2,14 @@
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
 /**
  * @author Nonki Takahashi
- * @version 0.2
+ * @version 0.5
  */
 
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include <iostream>
-#include "../BVector/BVector.h"
-#include "../BMatrix/BMatrix.h"
+#include "../binarymath/bvector.h"
+#include "../binarymath/bmatrix.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -123,6 +123,17 @@ namespace UnitTest
 			int v[] = { 0, 1, 0, 1 };
 			CBVector b(4, v);
 			Assert::AreEqual(1, a.dot(b));
+		}
+
+		TEST_METHOD(BVector_cross)
+		{
+			string expected("0 0 0 0\n0 0 0 0\n0 1 0 1\n0 1 0 1\n");
+			CBVector a(4);
+			a.setValue(3, 1);
+			a.setValue(4, 1);
+			int v[] = { 0, 1, 0, 1 };
+			CBVector b(4, v);
+			Assert::AreEqual(expected, a.cross(b).to_string());
 		}
 
 		TEST_METHOD(BMatrix_A)

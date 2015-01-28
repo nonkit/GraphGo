@@ -1,27 +1,27 @@
-// BMatrix.h
+// bmatrix.h
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.3
+// Version 0.4
 //
 // The following ifdef block is the standard way of creating macros which make exporting 
-// from a DLL simpler. All files within this DLL are compiled with the BMATRIX_EXPORTS
+// from a DLL simpler. All files within this DLL are compiled with the BINARYMATH_EXPORTS
 // symbol defined on the command line. This symbol should not be defined on any project
 // that uses this DLL. This way any other project whose source files include this file see 
-// BVECTOR_API functions as being imported from a DLL, whereas this DLL sees symbols
+// BINARYMATH_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
-#ifdef BMATRIX_EXPORTS
-#define BMATRIX_API __declspec(dllexport)
+#ifdef BINARYMATH_EXPORTS
+#define BINARYMATH_API __declspec(dllexport)
 #else
-#define BMATRIX_API __declspec(dllimport)
+#define BINARYMATH_API __declspec(dllimport)
 #endif
 
-// This class is exported from the BMatrix.dll
+// This class is exported from the binarymath.dll
 #include <string>
 #include <vector>
 using namespace std;
 
 class CBVector;
 
-class BMATRIX_API CBMatrix {
+class BINARYMATH_API CBMatrix {
 	int n, m;
 	vector <CBVector> colv;
 public:
@@ -46,7 +46,3 @@ public:
 	CBVector mul(CBVector);
 	string to_string(void);
 };
-
-//extern BMATRIX_API int nBMatrix;
-
-//BMATRIX_API int fnBMatrix(void);
