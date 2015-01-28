@@ -18,13 +18,13 @@
 
 
 // This is an example of an exported variable
-BMATRIX_API int nBMatrix = 0;
+//BMATRIX_API int nBMatrix = 0;
 
 // This is an example of an exported function.
-BMATRIX_API int fnBMatrix(void)
-{
-	return 42;
-}
+//BMATRIX_API int fnBMatrix(void)
+//{
+//	return 42;
+//}
 
 // This is the constructor of a class that has been exported.
 // see BVector.h for the class definition

@@ -2,12 +2,13 @@
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
 /**
  * @author Nonki Takahashi
- * @version 0.1
+ * @version 0.2
  */
 
 #include "stdafx.h"
 #include "CppUnitTest.h"
 #include <iostream>
+#include "../BVector/BVector.h"
 #include "../BMatrix/BMatrix.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

@@ -49,6 +49,6 @@ public:
 	string to_string(void);
 };
 
-extern BVECTOR_API int nBVector;
+//extern BVECTOR_API int nBVector;
 
-BVECTOR_API int fnBVector(void);
+//BVECTOR_API int fnBVector(void);

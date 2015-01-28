@@ -13,13 +13,13 @@
 #include <iostream>
 
 // This is an example of an exported variable
-BVECTOR_API int nBVector=0;
+//BVECTOR_API int nBVector=0;
 
 // This is an example of an exported function.
-BVECTOR_API int fnBVector(void)
-{
-	return 42;
-}
+//BVECTOR_API int fnBVector(void)
+//{
+//	return 42;
+//}
 
 // This is the constructor of a class that has been exported.
 // see BVector.h for the class definition
@@ -279,11 +279,12 @@ int CBVector::dot(CBVector bv2)
 	return b;
 }
 
+// TODO resolve mutual reference problem
 /**
-* Cross product with binary vector object bv2
-* @param bv2 second operand for dot product
-* @return dot product with bv2 (or -1 if error)
-* @since 0.4
+ * Cross product with binary vector object bv2
+ * @param bv2 second operand for dot product
+ * @return dot product with bv2 (or -1 if error)
+ * @since 0.4
 CBMatrix CBVector::cross(CBVector bv2)
 {
 	CBMatrix bm(order, order);

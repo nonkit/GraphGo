@@ -25,7 +25,7 @@ class BMATRIX_API CBMatrix {
 	int n, m;
 	vector <CBVector> colv;
 public:
-	// CBVector(void);
+	// CBMatrix(void);
 	// TODO: add your methods here.
 	CBMatrix(int, int);
 	void operator=(CBMatrix &);
@@ -47,6 +47,6 @@ public:
 	string to_string(void);
 };
 
-extern BMATRIX_API int nBMatrix;
+//extern BMATRIX_API int nBMatrix;
 
-BMATRIX_API int fnMatrix(void);
+//BMATRIX_API int fnBMatrix(void);
