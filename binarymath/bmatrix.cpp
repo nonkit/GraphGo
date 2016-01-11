@@ -1,10 +1,10 @@
 // bmatrix.cpp : Defines the exported functions for the DLL application.
 // Binary Matrix Class - CBVector
-// Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.4
+// Copyright (c) 2015-2016 Nonki Takahashi.  The MIT License.
+// Version 0.5
 /**
 * @author Nonki Takahashi
-* @version 0.4
+* @version 0.5
 */
 
 #include "stdafx.h"
@@ -133,8 +133,8 @@ bool CBMatrix::equals(CBMatrix bm2)
 }
 
 /**
-* Returns transposed binary vector
-* @return transposed binary vector
+* Returns row as binary vector
+* @return row as binary vector
 * @since 0.1
 */
 CBVector CBMatrix::row(int i)
@@ -270,9 +270,8 @@ CBVector CBMatrix::mul(CBVector bv2)
 }
 
 /**
-* Logical difference with binary matrix object bm2
-* @param bm2 second operand for logical difference
-* @return logical difference with bm2 (or 0 if error)
+* Convert the binary to a string
+* @return string
 * @since 0.1
 */
 string CBMatrix::to_string(void)
@@ -288,3 +287,24 @@ string CBMatrix::to_string(void)
 	}
 	return str;
 }
+/**
+  * Convert the binary matrix to TeX string
+  * @return TeX string
+  * @since 0.5
+  */
+string CBMatrix::to_TeX(void)
+{
+	string str("\\begin{pmatrix}");
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= m; j++) {
+			str += std::to_string(getValue(i, j));
+			if (j < m)
+				str += " & ";
+		}
+		if (i < n)
+			str += "\\\\";
+	}
+	str += "\\end{pmatrix}";
+	return str;
+}
+

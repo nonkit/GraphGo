@@ -1,10 +1,10 @@
 // bvector.cpp : Defines the exported functions for the DLL application.
 // Binary Vector Class - CBVector
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.5
+// Version 0.6
 /**
 * @author Nonki Takahashi
-* @version 0.5
+* @version 0.6
 */
 
 #include "stdafx.h"
@@ -151,6 +151,19 @@ CBVector CBVector::inv(void)
 }
 
 /**
+ * Returns inverted binary vector
+ * @return inverted binary vector
+ * @since 0.1
+ */
+CBMatrix CBVector::tran(void)
+{
+	CBMatrix bm(1, order);
+	for (int i = 0; i < order; i++)
+		bm.setValue(1, i + 1, getValue(i + 1));
+	return bm;
+}
+
+/**
 * Returns true if two vectors are equal.  Returns false if error or different.
 * @param bv2 comparison target binary vector
 * @return returns true if two vectors are equal
@@ -273,14 +286,14 @@ int CBVector::dot(CBVector bv2)
 /**
  * Cross product with binary vector object bv2
  * @param bv2 second operand for dot product
- * @return dot product with bv2 (or -1 if error)
+ * @return dot product with bv2 (or something if error)
  * @since 0.4
  */
 CBMatrix CBVector::cross(CBVector bv2)
 {
 	CBMatrix bm(order, order);
 	if (order != bv2.order)
-		return bm;	// TODO return -1
+		return bm;	// TODO return error
 	for (int j = 0; j < order; j++)
 		for (int i = 0; i < order; i++)
 			bm.setValue(i + 1, j + 1, (getValue(i + 1) & bv2.getValue(j + 1)));
@@ -303,4 +316,20 @@ string CBVector::to_string(void)
 	str += ")";
 	return str;
 }
-
+/**
+ * Convert binary vector object to TeX string
+ * @return TeX string
+ * @since 0.6
+ */
+string CBVector::to_TeX(void)
+{
+	string str("\\begin{pmatrix}");
+	for (int i = 0; i < order; i++) {
+		// convert to 1 origin
+		str += std::to_string(getValue(i + 1));
+		if (i < order - 1)
+			str += "\\\\";
+	}
+	str += "\\end{pmatrix}";
+	return str;
+}

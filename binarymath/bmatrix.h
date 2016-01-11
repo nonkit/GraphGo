@@ -1,6 +1,6 @@
 // bmatrix.h
 // Copyright (c) 2015 Nonki Takahashi.  The MIT License.
-// Version 0.4
+// Version 0.5
 //
 // The following ifdef block is the standard way of creating macros which make exporting 
 // from a DLL simpler. All files within this DLL are compiled with the BINARYMATH_EXPORTS
@@ -45,4 +45,5 @@ public:
 	CBMatrix mul(CBMatrix);
 	CBVector mul(CBVector);
 	string to_string(void);
+	string to_TeX(void);
 };
