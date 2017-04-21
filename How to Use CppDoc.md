@@ -4,4 +4,4 @@
 - Change Output. (version)
 - Push [Go].
 
-![How to Use CppDoc](How to Use CppDoc_CppDoc.png)
+![How to Use CppDoc](/How to Use CppDoc_CppDoc.png)
