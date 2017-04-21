@@ -6,5 +6,5 @@ N/A
 * [How to Use CppDoc](https://github.com/nonkit/GraphGo/blob/master/How%20to%20Use%20CppDoc.md)
 
 # OTHER RESOURCES
-* [Markdown Basics](https://help.github.com/articles/markdown-basics/) (for README.md / GitHub Help)
+* [Markdown Basics](https://help.github.com/articles/getting-started-with-writing-and-formatting-on-github/) (for README.md / GitHub Help)
 ----
